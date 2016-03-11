@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	
+	{% load staticfiles %}
 	<meta charset="UTF-8">
-	<title>Hello World</title>
+	<title>Productos en Venta</title>
+	<link rel="stylesheet" href="{% static 'css/base.css' %}">
+
 </head>
 <body>
-	<h1 style="color:green">
-	Karla Camacho
+	<h1>
+	Promociones
 	</h1>
+	<a href="{% url 'products.views.new_product' %}"> New products</a>
 	<ul>
-		{% for pr in product %}
-
-					
+		{% for pr in product %}	
 			<li>
-				{{ pr.name }} |
-				{{ pr.description }} 
-				{{ pr.price }}
+				<a href="{% url 'products.views.product_detail' pk=pr.pk %}">
+					{{ pr.name }}  
+				</a>
+				<img src="{{ pr.image.url }}" class="img-rounded">
 			</li>
 		{% endfor %}
 	</ul>
